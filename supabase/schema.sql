@@ -40,6 +40,8 @@ $$;
 
 revoke all on function public.email_is_admin(text) from public;
 grant execute on function public.email_is_admin(text) to anon, authenticated;
+revoke execute on function public.is_admin() from public, anon;
+revoke execute on function public.is_superadmin() from public, anon;
 grant execute on function public.is_admin() to authenticated;
 grant execute on function public.is_superadmin() to authenticated;
 
