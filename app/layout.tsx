@@ -47,11 +47,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="mailto:info@parrocchiavaleggio.it">info@parrocchiavaleggio.it</a>
               </p>
             </div>
+            <div>
+              <p className="etichetta etichetta-chiara">Area riservata</p>
+              <p>
+                Per catechisti e organizzatori:<br />
+                <Link href="/admin" className="piede-admin">Accedi al pannello admin →</Link>
+              </p>
+            </div>
           </div>
           <div className="contenitore piede-fondo">
             <span>© 2026 Parrocchia San Pietro Apostolo · Valeggio sul Mincio</span>
             <span className="piede-link">
-              <Link href="/admin">Area riservata</Link>
               <a href="#top">Torna su ↑</a>
             </span>
           </div>
