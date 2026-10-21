@@ -1,7 +1,7 @@
 # Iscrizioni al Ritiro di Avvento 2026
 
 Sito per le iscrizioni al ritiro di Avvento della Parrocchia San Pietro Apostolo di Valeggio sul Mincio
-(domenica 29 novembre 2026, dalle 16.30 alla Santa Messa delle 19.00).
+(domenica 29 novembre 2026, dalle 16.00 alla Santa Messa delle 19.00).
 
 - **Pagina pubblica** (`/`): informazioni sul ritiro e modulo di iscrizione.
 - **Area riservata** (`/admin`): elenco delle iscrizioni e download del file Excel.

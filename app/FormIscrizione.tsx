@@ -15,7 +15,7 @@ export default function FormIscrizione() {
       <div className="esito esito-ok" role="status">
         <p className="esito-titolo">✦ Iscrizione ricevuta</p>
         <p>{stato.messaggio}</p>
-        <p>Vi aspettiamo domenica 29 novembre alle 16.30.</p>
+        <p>Vi aspettiamo domenica 29 novembre alle 16.00.</p>
         <button type="button" className="btn btn-secondario" onClick={() => location.reload()}>
           Iscrivi un altro ragazzo/a
         </button>

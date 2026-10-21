@@ -26,7 +26,7 @@ export default function Home() {
           </p>
           <dl className="dettagli">
             <div><dt>Quando</dt><dd>{EVENTO.data}</dd></div>
-            <div><dt>Orario</dt><dd>Inizio ore 16.30, conclusione con la Santa Messa delle 19.00</dd></div>
+            <div><dt>Orario</dt><dd>Dalle 16.00 alle 19.00, con la Santa Messa delle 19.00</dd></div>
             <div><dt>Dove</dt><dd>{EVENTO.luogo}</dd></div>
             <div><dt>Per chi</dt><dd>{EVENTO.destinatari}</dd></div>
           </dl>
