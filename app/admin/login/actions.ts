@@ -45,7 +45,7 @@ export async function primoAccesso(_prev: StatoAuth, formData: FormData): Promis
   if (!abilitato)
     return { ok: false, email, messaggio: "Questo indirizzo non è abilitato. Chiedi al super admin di aggiungerti." };
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: { emailRedirectTo: `${await origine()}/auth/callback` },
@@ -54,9 +54,13 @@ export async function primoAccesso(_prev: StatoAuth, formData: FormData): Promis
     console.error("Errore primo accesso", error);
     return { ok: false, email, messaggio: "Registrazione non riuscita. Attendi qualche minuto e riprova." };
   }
+  // Se l'account esiste gia' Supabase non invia email e non cambia la password
+  if (data.user && data.user.identities?.length === 0) {
+    return { ok: false, email, messaggio: "Hai già un account. Per impostare o cambiare la password usa \"Password dimenticata?\" dalla pagina di accesso." };
+  }
   return {
     ok: true,
-    messaggio: "Ti abbiamo inviato un'email: apri il link per confermare l'indirizzo, poi potrai entrare con la tua password. Se avevi già una password, usa \"Password dimenticata\".",
+    messaggio: "Ti abbiamo inviato un'email: apri il link per confermare l'indirizzo, poi potrai entrare con la tua password.",
   };
 }
 
