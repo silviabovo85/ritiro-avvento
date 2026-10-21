@@ -1,0 +1,65 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
+import "./globals.css";
+
+const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif" });
+const sans = Source_Sans_3({ subsets: ["latin"], variable: "--font-sans" });
+
+export const metadata: Metadata = {
+  title: "Ritiro di Avvento 2026 · Parrocchia San Pietro Apostolo",
+  description: "Iscrizioni al ritiro di Avvento del 29 novembre 2026 per i ragazzi di prima e seconda secondaria e i loro genitori.",
+};
+
+export const viewport = { themeColor: "#193764" };
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="it" className={`${serif.variable} ${sans.variable}`}>
+      <body>
+        <a className="salta" href="#contenuto">Salta al contenuto</a>
+        <header className="testata" id="top">
+          <div className="contenitore testata-inner">
+            <Link href="/" className="marchio">
+              <span className="marchio-croce" aria-hidden="true">✝</span>
+              <span>
+                <span className="marchio-nome">Parrocchia San Pietro Apostolo</span>
+                <span className="marchio-sotto">Valeggio sul Mincio · Diocesi di Verona · dal 1145</span>
+              </span>
+            </Link>
+            <a className="testata-link" href="https://www.parrocchiavaleggio.it/">Sito della parrocchia ↗</a>
+          </div>
+        </header>
+
+        <main id="contenuto">{children}</main>
+
+        <footer className="piede">
+          <div className="contenitore piede-griglia">
+            <div>
+              <p className="piede-nome">Parrocchia San Pietro Apostolo</p>
+              <p className="piede-motto">Una comunità in cammino</p>
+            </div>
+            <div>
+              <p className="etichetta etichetta-chiara">Dove siamo</p>
+              <p>Vicolo Oratorio, 2<br />37067 Valeggio sul Mincio (VR)</p>
+            </div>
+            <div>
+              <p className="etichetta etichetta-chiara">Contatti</p>
+              <p>
+                Tel. <a href="tel:+390457950031">045 7950031</a><br />
+                <a href="mailto:info@parrocchiavaleggio.it">info@parrocchiavaleggio.it</a>
+              </p>
+            </div>
+          </div>
+          <div className="contenitore piede-fondo">
+            <span>© 2026 Parrocchia San Pietro Apostolo · Valeggio sul Mincio</span>
+            <span className="piede-link">
+              <Link href="/admin">Area riservata</Link>
+              <a href="#top">Torna su ↑</a>
+            </span>
+          </div>
+        </footer>
+      </body>
+    </html>
+  );
+}
