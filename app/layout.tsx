@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
@@ -20,12 +21,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="salta" href="#contenuto">Salta al contenuto</a>
         <header className="testata" id="top">
           <div className="contenitore testata-inner">
-            <Link href="/" className="marchio">
-              <span className="marchio-croce" aria-hidden="true">✝</span>
-              <span>
-                <span className="marchio-nome">Parrocchia San Pietro Apostolo</span>
-                <span className="marchio-sotto">Valeggio sul Mincio · Diocesi di Verona · dal 1145</span>
-              </span>
+            <Link href="/" className="marchio" aria-label="Parrocchia San Pietro Apostolo, Valeggio sul Mincio">
+              <Image src="/logo-white.png" alt="Parrocchia San Pietro Apostolo · Valeggio sul Mincio" width={1828} height={334} priority className="marchio-logo" />
             </Link>
             <a className="testata-link" href="https://www.parrocchiavaleggio.it/">Sito della parrocchia ↗</a>
           </div>
@@ -36,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="piede">
           <div className="contenitore piede-griglia">
             <div>
-              <p className="piede-nome">Parrocchia San Pietro Apostolo</p>
+              <Image src="/logo-white.png" alt="Parrocchia San Pietro Apostolo · Valeggio sul Mincio" width={1828} height={334} className="piede-logo" />
               <p className="piede-motto">Una comunità in cammino</p>
             </div>
             <div>

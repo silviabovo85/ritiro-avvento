@@ -47,9 +47,8 @@ h2 { font-size: 2rem; }
 .testata { background: var(--blu); color: var(--bianco); border-bottom: 3px solid var(--oro); }
 .testata-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
 .marchio { display: flex; align-items: center; gap: 12px; color: var(--bianco); text-decoration: none; }
-.marchio-croce { font-size: 1.9rem; color: var(--oro-chiaro); line-height: 1; }
-.marchio-nome { display: block; font-family: var(--font-serif), Georgia, serif; font-size: 1.35rem; font-weight: 600; line-height: 1.1; }
-.marchio-sotto { display: block; font-size: .78rem; letter-spacing: .06em; opacity: .8; }
+.marchio-logo { height: 54px; width: auto; display: block; }
+.piede-logo { height: 52px; width: auto; display: block; margin-bottom: 12px; }
 .testata-link { color: var(--bianco); font-size: .9rem; text-decoration: none; opacity: .85; white-space: nowrap; }
 .testata-link:hover { opacity: 1; text-decoration: underline; }
 
@@ -131,7 +130,6 @@ h2 { font-size: 2rem; }
 .piede { background: var(--blu-scuro); color: rgba(255,255,255,.85); margin-top: 40px; font-size: .95rem; }
 .piede a { color: var(--bianco); }
 .piede-griglia { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; padding-top: 44px; padding-bottom: 28px; }
-.piede-nome { font-family: var(--font-serif), Georgia, serif; font-size: 1.4rem; color: var(--bianco); margin: 0; }
 .piede-motto { font-style: italic; margin: .2rem 0 0; opacity: .8; }
 .piede p { margin-top: 0; }
 .piede-fondo { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; padding-bottom: 20px; font-size: .85rem; opacity: .85; }
@@ -141,6 +139,7 @@ h2 { font-size: 2rem; }
   .griglia-evento, .piede-griglia { grid-template-columns: 1fr; gap: 32px; }
   .riga { grid-template-columns: 1fr; }
   .testata-link { display: none; }
+  .marchio-logo { height: 42px; }
   .scheda { padding: 24px 18px; }
   .sezione { padding: 40px 16px; }
   .contenitore { padding-left: 16px; padding-right: 16px; }
