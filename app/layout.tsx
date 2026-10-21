@@ -9,7 +9,7 @@ const sans = Source_Sans_3({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Ritiro di Avvento 2026 · Parrocchia San Pietro Apostolo",
-  description: "Iscrizioni al ritiro di Avvento del 29 novembre 2026 per i ragazzi di prima e seconda secondaria e i loro genitori.",
+  description: "Iscrizioni al ritiro di Avvento del 28 novembre 2026 per i ragazzi di prima e seconda secondaria e i loro genitori.",
 };
 
 export const viewport = { themeColor: "#193764" };
