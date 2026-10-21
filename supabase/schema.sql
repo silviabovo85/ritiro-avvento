@@ -54,6 +54,15 @@ drop policy if exists "lettura admin" on public.iscrizioni;
 create policy "lettura admin" on public.iscrizioni
   for select to authenticated using (public.is_admin());
 
+-- Il super admin modifica, tutti gli admin cancellano
+drop policy if exists "superadmin modifica iscrizioni" on public.iscrizioni;
+create policy "superadmin modifica iscrizioni" on public.iscrizioni
+  for update to authenticated using (public.is_superadmin()) with check (public.is_superadmin());
+
+drop policy if exists "admin cancellano iscrizioni" on public.iscrizioni;
+create policy "admin cancellano iscrizioni" on public.iscrizioni
+  for delete to authenticated using (public.is_admin());
+
 -- Admin: tutti gli admin vedono l'elenco, solo il super admin aggiunge e rimuove
 drop policy if exists "admin vedono admin" on public.admins;
 create policy "admin vedono admin" on public.admins
@@ -68,7 +77,8 @@ create policy "superadmin rimuove admin" on public.admins
   for delete to authenticated using (public.is_superadmin() and role = 'admin');
 
 grant insert on public.iscrizioni to anon, authenticated;
-grant select on public.iscrizioni to authenticated;
+grant select, delete on public.iscrizioni to authenticated;
+grant update (nome_bambino, gruppo_catechismo, numero_genitori, telefono, email) on public.iscrizioni to authenticated;
 grant select, insert, delete on public.admins to authenticated;
 
 -- Super admin

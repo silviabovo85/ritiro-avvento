@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient, getAdmin } from "@/lib/supabase";
 import { aggiungiAdmin, esci, rimuoviAdmin } from "./actions";
+import EliminaIscrizione from "./EliminaIscrizione";
 
 export const dynamic = "force-dynamic";
 
@@ -63,12 +64,12 @@ export default async function Admin() {
         <table className="tabella">
           <thead>
             <tr>
-              <th>#</th><th>Ragazzo/a</th><th>Gruppo</th><th>Genitori</th><th>Telefono</th><th>Email</th><th>Data</th>
+              <th>#</th><th>Ragazzo/a</th><th>Gruppo</th><th>Genitori</th><th>Telefono</th><th>Email</th><th>Data</th><th>Azioni</th>
             </tr>
           </thead>
           <tbody>
             {iscrizioni.length === 0 && (
-              <tr><td colSpan={7} className="vuoto">Nessuna iscrizione ancora.</td></tr>
+              <tr><td colSpan={8} className="vuoto">Nessuna iscrizione ancora.</td></tr>
             )}
             {iscrizioni.map((i, n) => (
               <tr key={i.id}>
@@ -79,6 +80,12 @@ export default async function Admin() {
                 <td><a href={`tel:${i.telefono}`}>{i.telefono}</a></td>
                 <td><a href={`mailto:${i.email}`}>{i.email}</a></td>
                 <td>{dataOra.format(new Date(i.created_at))}</td>
+                <td>
+                  <div className="azioni-riga">
+                    {admin.role === "superadmin" && <Link href={`/admin/iscrizioni/${i.id}`}>Modifica</Link>}
+                    <EliminaIscrizione id={i.id} nome={i.nome_bambino} />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -90,7 +97,7 @@ export default async function Admin() {
           <p className="etichetta">Super admin</p>
           <h2>Amministratori</h2>
           <p className="nota">
-            Gli admin possono solo vedere le iscrizioni e scaricare il file Excel. Dopo che li hai
+            Gli admin possono vedere, cancellare e scaricare le iscrizioni, ma non modificarle. Dopo che li hai
             aggiunti, vanno su &quot;Area riservata&quot; → &quot;Primo accesso&quot;, scelgono la loro password e
             confermano l&apos;email.
           </p>

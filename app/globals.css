@@ -108,6 +108,7 @@ h2 { font-size: 2rem; }
 
 /* Admin */
 .link-auth { display: flex; flex-direction: column; gap: 6px; margin: 20px 0 0; font-size: .95rem; }
+.azioni-riga { display: flex; gap: 12px; align-items: center; white-space: nowrap; font-size: .9rem; }
 .azioni-testa { display: flex; gap: 10px; flex-wrap: wrap; }
 .admin-testa { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
 .riepilogo { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
