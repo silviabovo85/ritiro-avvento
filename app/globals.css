@@ -107,6 +107,8 @@ h2 { font-size: 2rem; }
 .esito-errore { background: #fbeeed; border: 1px solid #e8c1be; color: var(--errore); margin-bottom: 1rem; }
 
 /* Admin */
+.link-auth { display: flex; flex-direction: column; gap: 6px; margin: 20px 0 0; font-size: .95rem; }
+.azioni-testa { display: flex; gap: 10px; flex-wrap: wrap; }
 .admin-testa { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
 .riepilogo { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 24px; }
 .riepilogo > div { background: var(--bianco); border: 1px solid var(--bordo); border-radius: var(--raggio); padding: 14px 20px; min-width: 150px; }

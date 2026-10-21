@@ -7,9 +7,10 @@ Sito per le iscrizioni al ritiro di Avvento della Parrocchia San Pietro Apostolo
 - **Area riservata** (`/admin`): elenco delle iscrizioni e download del file Excel.
 - **Super admin** (silviabovo85@gmail.com): in più può aggiungere e rimuovere gli admin.
 
-L'accesso all'area riservata avviene con un link inviato via email (niente password).
-Per aggiungere un admin basta inserire la sua email nel pannello: la volta successiva potrà
-richiedere il link da "Area riservata".
+L'accesso all'area riservata avviene con email e password.
+Il super admin aggiunge l'email di un nuovo admin dal pannello; l'admin va su
+"Area riservata" → "Primo accesso", sceglie la password e conferma l'indirizzo dal link ricevuto via email.
+Chi dimentica la password usa "Password dimenticata?".
 
 Tecnologie: Next.js (hosting su Vercel) e Supabase (database e accesso).
 

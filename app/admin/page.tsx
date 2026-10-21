@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient, getAdmin } from "@/lib/supabase";
 import { aggiungiAdmin, esci, rimuoviAdmin } from "./actions";
@@ -45,7 +46,10 @@ export default async function Admin() {
           <h1 className="titolo-pagina">Iscrizioni al ritiro di Avvento</h1>
           <p className="nota">Collegato come {admin.email}</p>
         </div>
-        <form action={esci}><button className="btn btn-secondario">Esci</button></form>
+        <div className="azioni-testa">
+          <Link className="btn btn-secondario" href="/admin/nuova-password">Cambia password</Link>
+          <form action={esci}><button className="btn btn-secondario">Esci</button></form>
+        </div>
       </div>
 
       <div className="riepilogo">
@@ -86,8 +90,9 @@ export default async function Admin() {
           <p className="etichetta">Super admin</p>
           <h2>Amministratori</h2>
           <p className="nota">
-            Gli admin possono solo vedere le iscrizioni e scaricare il file Excel. Per entrare vanno su
-            questo sito, cliccano &quot;Area riservata&quot; e ricevono il link di accesso via email.
+            Gli admin possono solo vedere le iscrizioni e scaricare il file Excel. Dopo che li hai
+            aggiunti, vanno su &quot;Area riservata&quot; → &quot;Primo accesso&quot;, scelgono la loro password e
+            confermano l&apos;email.
           </p>
           <ul className="lista-admin">
             {admins.map((a) => (
