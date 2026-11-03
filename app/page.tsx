@@ -24,6 +24,10 @@ export default function Home() {
             come comunità. Sono invitati i ragazzi di prima e seconda secondaria insieme ai loro
             genitori.
           </p>
+          <p className="testo">
+            Sarà con noi il dott. Alberto D&apos;Auria per un incontro formativo dedicato ai genitori
+            sul tema <em>«Trasmettere la fede vivendola»</em>.
+          </p>
           <dl className="dettagli">
             <div><dt>Quando</dt><dd>{EVENTO.data}</dd></div>
             <div><dt>Orario</dt><dd>Inizio ore 16.00, conclusione con la Santa Messa delle 19.00</dd></div>

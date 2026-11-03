@@ -5,6 +5,10 @@ import { iscrivi, type StatoForm } from "./actions";
 
 const iniziale: StatoForm = { ok: false };
 
+const OPZIONI_FRATELLI = [0, 1, 2, 3, 4, 5].map((n) => (
+  <option key={n} value={n}>{n === 0 ? "Nessuno" : n}</option>
+));
+
 export default function FormIscrizione() {
   const [stato, azione, inCorso] = useActionState(iscrivi, iniziale);
   const err = stato.errori ?? {};
@@ -57,16 +61,22 @@ export default function FormIscrizione() {
 
       <div className="riga">
         <div className="campo">
-          <label htmlFor="telefono">Numero di telefono *</label>
-          <input id="telefono" name="telefono" defaultValue={v.telefono} type="tel" autoComplete="tel" required
-            aria-invalid={!!err.telefono} />
-          {err.telefono && <span className="errore">{err.telefono}</span>}
+          <label htmlFor="fratelli_7_piu">Fratelli dai 7 anni in su *</label>
+          <select id="fratelli_7_piu" name="fratelli_7_piu" defaultValue={v.fratelli_7_piu ?? ""} required
+            aria-invalid={!!err.fratelli_7_piu}>
+            <option value="" disabled>Seleziona</option>
+            {OPZIONI_FRATELLI}
+          </select>
+          {err.fratelli_7_piu && <span className="errore">{err.fratelli_7_piu}</span>}
         </div>
         <div className="campo">
-          <label htmlFor="email">Email *</label>
-          <input id="email" name="email" defaultValue={v.email} type="email" autoComplete="email" required
-            aria-invalid={!!err.email} />
-          {err.email && <span className="errore">{err.email}</span>}
+          <label htmlFor="fratelli_sotto_7">Fratelli sotto i 7 anni *</label>
+          <select id="fratelli_sotto_7" name="fratelli_sotto_7" defaultValue={v.fratelli_sotto_7 ?? ""} required
+            aria-invalid={!!err.fratelli_sotto_7}>
+            <option value="" disabled>Seleziona</option>
+            {OPZIONI_FRATELLI}
+          </select>
+          {err.fratelli_sotto_7 && <span className="errore">{err.fratelli_sotto_7}</span>}
         </div>
       </div>
 

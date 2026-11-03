@@ -13,8 +13,11 @@ create table if not exists public.iscrizioni (
   nome_bambino text not null check (char_length(nome_bambino) between 2 and 120),
   gruppo_catechismo text not null check (char_length(gruppo_catechismo) between 1 and 120),
   numero_genitori smallint not null check (numero_genitori between 0 and 4),
-  telefono text not null check (char_length(telefono) between 6 and 30),
-  email text not null check (char_length(email) between 5 and 200),
+  -- telefono ed email non vengono piu' chiesti dal modulo (novembre 2026)
+  telefono text check (char_length(telefono) between 6 and 30),
+  email text check (char_length(email) between 5 and 200),
+  fratelli_7_piu smallint not null default 0 check (fratelli_7_piu between 0 and 10),
+  fratelli_sotto_7 smallint not null default 0 check (fratelli_sotto_7 between 0 and 10),
   consenso_privacy boolean not null check (consenso_privacy)
 );
 
@@ -78,7 +81,7 @@ create policy "superadmin rimuove admin" on public.admins
 
 grant insert on public.iscrizioni to anon, authenticated;
 grant select, delete on public.iscrizioni to authenticated;
-grant update (nome_bambino, gruppo_catechismo, numero_genitori, telefono, email) on public.iscrizioni to authenticated;
+grant update (nome_bambino, gruppo_catechismo, numero_genitori, telefono, email, fratelli_7_piu, fratelli_sotto_7) on public.iscrizioni to authenticated;
 grant select, insert, delete on public.admins to authenticated;
 
 -- Super admin

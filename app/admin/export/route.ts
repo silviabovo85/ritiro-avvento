@@ -10,7 +10,7 @@ export async function GET(request: Request) {
 
   const { data, error } = await admin.supabase
     .from("iscrizioni")
-    .select("created_at, nome_bambino, gruppo_catechismo, numero_genitori, telefono, email")
+    .select("created_at, nome_bambino, gruppo_catechismo, numero_genitori, fratelli_7_piu, fratelli_sotto_7")
     .order("created_at", { ascending: true });
   if (error) return new NextResponse("Errore nel recupero delle iscrizioni", { status: 500 });
 
@@ -22,8 +22,8 @@ export async function GET(request: Request) {
     { header: "Nome e cognome ragazzo/a", key: "nome_bambino", width: 32 },
     { header: "Gruppo di catechismo", key: "gruppo_catechismo", width: 26 },
     { header: "Genitori partecipanti", key: "numero_genitori", width: 20 },
-    { header: "Telefono", key: "telefono", width: 18 },
-    { header: "Email", key: "email", width: 32 },
+    { header: "Fratelli dai 7 anni", key: "fratelli_7_piu", width: 18 },
+    { header: "Fratelli sotto i 7 anni", key: "fratelli_sotto_7", width: 20 },
     { header: "Data iscrizione", key: "data", width: 20 },
   ];
   (data ?? []).forEach((r, i) => {
@@ -31,9 +31,15 @@ export async function GET(request: Request) {
     const data = new Date(r.created_at).toLocaleString("it-IT", { timeZone: "Europe/Rome" });
     ws.addRow({ n: i + 1, ...r, data });
   });
-  const totGenitori = (data ?? []).reduce((t, r) => t + r.numero_genitori, 0);
+  const somma = (campo: "numero_genitori" | "fratelli_7_piu" | "fratelli_sotto_7") =>
+    (data ?? []).reduce((t, r) => t + r[campo], 0);
   ws.addRow({});
-  ws.addRow({ nome_bambino: `Totale ragazzi: ${data?.length ?? 0}`, numero_genitori: totGenitori }).font = { bold: true };
+  ws.addRow({
+    nome_bambino: `Totale ragazzi: ${data?.length ?? 0}`,
+    numero_genitori: somma("numero_genitori"),
+    fratelli_7_piu: somma("fratelli_7_piu"),
+    fratelli_sotto_7: somma("fratelli_sotto_7"),
+  }).font = { bold: true };
 
   const testa = ws.getRow(1);
   testa.font = { bold: true, color: { argb: "FFFFFFFF" } };
