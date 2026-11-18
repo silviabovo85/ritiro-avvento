@@ -10,7 +10,8 @@ export const dynamic = "force-dynamic";
 type Iscrizione = {
   id: number;
   created_at: string;
-  nome_cognome: string;
+  nome: string;
+  cognome: string;
   annata: number;
   cena: boolean;
 };
@@ -29,8 +30,9 @@ export default async function Admin() {
 
   const { data } = await admin.supabase
     .from("iscrizioni_adolescenti")
-    .select("id, created_at, nome_cognome, annata, cena")
-    .order("created_at", { ascending: true });
+    .select("id, created_at, nome, cognome, annata, cena")
+    .order("cognome", { ascending: true })
+    .order("nome", { ascending: true });
   const iscrizioni = (data ?? []) as Iscrizione[];
   const aCena = iscrizioni.filter((i) => i.cena).length;
   const classe = (anno: number) => ANNATE.find((a) => a.anno === anno)?.classe ?? "";
@@ -64,24 +66,25 @@ export default async function Admin() {
         <table className="tabella">
           <thead>
             <tr>
-              <th>#</th><th>Nome e cognome</th><th>Annata</th><th>A cena</th><th>Data</th><th>Azioni</th>
+              <th>#</th><th>Cognome</th><th>Nome</th><th>Annata</th><th>A cena</th><th>Data</th><th>Azioni</th>
             </tr>
           </thead>
           <tbody>
             {iscrizioni.length === 0 && (
-              <tr><td colSpan={6} className="vuoto">Nessuna iscrizione ancora.</td></tr>
+              <tr><td colSpan={7} className="vuoto">Nessuna iscrizione ancora.</td></tr>
             )}
             {iscrizioni.map((i, n) => (
               <tr key={i.id}>
                 <td>{n + 1}</td>
-                <td>{i.nome_cognome}</td>
+                <td>{i.cognome}</td>
+                <td>{i.nome}</td>
                 <td>{i.annata} <span className="nota">({classe(i.annata)})</span></td>
                 <td>{i.cena ? "Sì" : "No"}</td>
                 <td>{dataOra.format(new Date(i.created_at))}</td>
                 <td>
                   <div className="azioni-riga">
                     {admin.role === "superadmin" && <Link href={`/admin/iscrizioni/${i.id}`}>Modifica</Link>}
-                    <EliminaIscrizione id={i.id} nome={i.nome_cognome} />
+                    <EliminaIscrizione id={i.id} nome={`${i.nome} ${i.cognome}`} />
                   </div>
                 </td>
               </tr>

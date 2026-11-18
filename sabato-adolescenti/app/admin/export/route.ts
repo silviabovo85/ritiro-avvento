@@ -11,8 +11,9 @@ export async function GET(request: Request) {
 
   const { data, error } = await admin.supabase
     .from("iscrizioni_adolescenti")
-    .select("created_at, nome_cognome, annata, cena")
-    .order("created_at", { ascending: true });
+    .select("created_at, nome, cognome, annata, cena")
+    .order("cognome", { ascending: true })
+    .order("nome", { ascending: true });
   if (error) return new NextResponse("Errore nel recupero delle iscrizioni", { status: 500 });
 
   const wb = new ExcelJS.Workbook();
@@ -20,7 +21,8 @@ export async function GET(request: Request) {
   const ws = wb.addWorksheet("Iscrizioni");
   ws.columns = [
     { header: "N.", key: "n", width: 6 },
-    { header: "Nome e cognome", key: "nome_cognome", width: 32 },
+    { header: "Cognome", key: "cognome", width: 22 },
+    { header: "Nome", key: "nome", width: 20 },
     { header: "Annata", key: "annata", width: 10 },
     { header: "Classe", key: "classe", width: 16 },
     { header: "Viene a cena", key: "cena", width: 14 },
@@ -31,17 +33,17 @@ export async function GET(request: Request) {
     // Data in ora italiana, come testo per evitare conversioni di fuso in Excel
     const data = new Date(r.created_at).toLocaleString("it-IT", { timeZone: "Europe/Rome" });
     const classe = ANNATE.find((a) => a.anno === r.annata)?.classe ?? "";
-    ws.addRow({ n: i + 1, nome_cognome: r.nome_cognome, annata: r.annata, classe, cena: r.cena ? "Sì" : "No", data });
+    ws.addRow({ n: i + 1, cognome: r.cognome, nome: r.nome, annata: r.annata, classe, cena: r.cena ? "Sì" : "No", data });
   });
   const aCena = righe.filter((r) => r.cena).length;
   ws.addRow({});
-  ws.addRow({ nome_cognome: `Totale iscritti: ${righe.length}`, cena: `A cena: ${aCena}` }).font = { bold: true };
+  ws.addRow({ cognome: `Totale iscritti: ${righe.length}`, cena: `A cena: ${aCena}` }).font = { bold: true };
 
   const testa = ws.getRow(1);
   testa.font = { bold: true, color: { argb: "FFFFFFFF" } };
   testa.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FF193764" } };
   ws.views = [{ state: "frozen", ySplit: 1 }];
-  ws.autoFilter = { from: "A1", to: "F1" };
+  ws.autoFilter = { from: "A1", to: "G1" };
 
   const buffer = await wb.xlsx.writeBuffer();
   return new NextResponse(buffer as ArrayBuffer, {
