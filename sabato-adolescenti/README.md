@@ -14,9 +14,7 @@ Usa lo **stesso progetto Supabase**: tabella `iscrizioni_adolescenti`, con gli s
 ## Messa online su Vercel
 1. Su [vercel.com/new](https://vercel.com/new) importa di nuovo il repository `ritiro-avvento`.
 2. Dai al progetto il nome `sabato-adolescenti` e in **Root Directory** scegli la cartella `sabato-adolescenti`.
-3. In **Environment Variables** aggiungi gli stessi valori del sito del ritiro:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+3. Non servono variabili d'ambiente: indirizzo e chiave pubblica di Supabase sono in `lib/config.ts`.
 4. Premi **Deploy**.
 5. In Supabase, **Authentication → URL Configuration → Redirect URLs**, aggiungi
    `https://<indirizzo-del-nuovo-sito>/auth/callback` (serve per primo accesso e password dimenticata).
