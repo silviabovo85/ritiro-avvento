@@ -30,11 +30,19 @@ export default function FormIscrizione() {
         <p className="esito esito-errore" role="alert">{stato.messaggio}</p>
       )}
 
-      <div className="campo">
-        <label htmlFor="nome_cognome">Nome e cognome *</label>
-        <input id="nome_cognome" name="nome_cognome" defaultValue={v.nome_cognome} autoComplete="name" required maxLength={120}
-          aria-invalid={!!err.nome_cognome} />
-        {err.nome_cognome && <span className="errore">{err.nome_cognome}</span>}
+      <div className="riga">
+        <div className="campo">
+          <label htmlFor="nome">Nome *</label>
+          <input id="nome" name="nome" defaultValue={v.nome} autoComplete="given-name" required maxLength={80}
+            aria-invalid={!!err.nome} />
+          {err.nome && <span className="errore">{err.nome}</span>}
+        </div>
+        <div className="campo">
+          <label htmlFor="cognome">Cognome *</label>
+          <input id="cognome" name="cognome" defaultValue={v.cognome} autoComplete="family-name" required maxLength={80}
+            aria-invalid={!!err.cognome} />
+          {err.cognome && <span className="errore">{err.cognome}</span>}
+        </div>
       </div>
 
       <div className="campo">

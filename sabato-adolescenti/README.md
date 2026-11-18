@@ -7,7 +7,7 @@ per i ragazzi dalla III media alla III superiore.
 Stessa grafica e stessa area riservata del sito del ritiro di Avvento (cartella principale del repository).
 Usa lo **stesso progetto Supabase**: tabella `iscrizioni_adolescenti`, con gli stessi admin e le stesse password.
 
-- **Pagina pubblica** (`/`): informazioni sulla serata e modulo (nome e cognome, annata, vengo a cena sì/no).
+- **Pagina pubblica** (`/`): informazioni sulla serata e modulo (nome, cognome, annata, vengo a cena sì/no).
 - **Area riservata** (`/admin`): elenco, totale a cena, download Excel, cancellazione.
 - **Super admin**: in più modifica le iscrizioni e gestisce gli admin.
 

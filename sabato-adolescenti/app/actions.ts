@@ -28,5 +28,5 @@ export async function iscrivi(_prev: StatoForm, formData: FormData): Promise<Sta
     console.error("Errore iscrizione", error);
     return { ok: false, valori, tentativo: Date.now(), messaggio: "Non è stato possibile registrare l'iscrizione. Riprova tra qualche minuto o contatta la segreteria." };
   }
-  return { ok: true, messaggio: `Grazie! L'iscrizione di ${dati.nome_cognome} è stata registrata.` };
+  return { ok: true, messaggio: `Grazie! L'iscrizione di ${dati.nome} ${dati.cognome} è stata registrata.` };
 }

@@ -5,7 +5,7 @@ import { useActionState } from "react";
 import { modificaIscrizione, type StatoModifica } from "../../actions";
 import { ANNATE } from "@/lib/evento";
 
-type Iscrizione = { id: number; nome_cognome: string; annata: number; cena: boolean };
+type Iscrizione = { id: number; nome: string; cognome: string; annata: number; cena: boolean };
 
 export default function ModificaForm({ iscrizione: i }: { iscrizione: Iscrizione }) {
   const [stato, azione, inCorso] = useActionState(modificaIscrizione.bind(null, i.id), { ok: false } as StatoModifica);
@@ -14,9 +14,14 @@ export default function ModificaForm({ iscrizione: i }: { iscrizione: Iscrizione
     <form action={azione} className="form">
       {stato.messaggio && <p className="esito esito-errore" role="alert">{stato.messaggio}</p>}
       <div className="campo">
-        <label htmlFor="nome_cognome">Nome e cognome</label>
-        <input id="nome_cognome" name="nome_cognome" defaultValue={i.nome_cognome} required aria-invalid={!!err.nome_cognome} />
-        {err.nome_cognome && <span className="errore">{err.nome_cognome}</span>}
+        <label htmlFor="nome">Nome</label>
+        <input id="nome" name="nome" defaultValue={i.nome} required aria-invalid={!!err.nome} />
+        {err.nome && <span className="errore">{err.nome}</span>}
+      </div>
+      <div className="campo">
+        <label htmlFor="cognome">Cognome</label>
+        <input id="cognome" name="cognome" defaultValue={i.cognome} required aria-invalid={!!err.cognome} />
+        {err.cognome && <span className="errore">{err.cognome}</span>}
       </div>
       <div className="campo">
         <label htmlFor="annata">Annata</label>
