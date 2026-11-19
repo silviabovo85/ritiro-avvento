@@ -20,9 +20,6 @@ export default function Home() {
           <p className="etichetta">L&apos;appuntamento</p>
           <h2>Sabato sera adolescenti</h2>
           <p className="testo">
-            Incontro adolescenti dalla terza media alla terza superiore.
-          </p>
-          <p className="testo">
             Svolgimento della serata: cena ore 20.00, segue film e tempo libero (fino alle 23).
           </p>
           <p className="testo">
