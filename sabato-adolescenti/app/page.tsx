@@ -8,10 +8,6 @@ export default function Home() {
         <div className="contenitore">
           <p className="etichetta etichetta-chiara">Adolescenti · Avvento 2026</p>
           <h1>{EVENTO.titolo}</h1>
-          <p className="hero-citazione">
-            «Voi siete la luce del mondo.»
-            <span>Matteo 5,14</span>
-          </p>
         </div>
       </section>
 
