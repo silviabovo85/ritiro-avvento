@@ -23,7 +23,10 @@ export default function Home() {
             Incontro adolescenti dalla terza media alla terza superiore.
           </p>
           <p className="testo">
-            Svolgimento della serata: cena alle ore 20.00, segue film e condivisione.
+            Svolgimento della serata: cena ore 20.00, segue film e tempo libero (fino alle 23).
+          </p>
+          <p className="testo">
+            <strong>Termine iscrizioni: martedì 24 novembre</strong>
           </p>
           <dl className="dettagli">
             <div><dt>Data</dt><dd>{EVENTO.data}</dd></div>
