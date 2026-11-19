@@ -18,7 +18,7 @@ export default function Home() {
       <section className="contenitore sezione griglia-evento">
         <div>
           <p className="etichetta">L&apos;appuntamento</p>
-          <h2>Una serata insieme</h2>
+          <h2>Sabato sera adolescenti</h2>
           <p className="testo">
             Incontro adolescenti dalla terza media alla terza superiore.
           </p>
@@ -26,10 +26,10 @@ export default function Home() {
             Svolgimento della serata: cena alle ore 20.00, segue film e condivisione.
           </p>
           <dl className="dettagli">
-            <div><dt>Quando</dt><dd>{EVENTO.data}, {EVENTO.orario}</dd></div>
-            <div><dt>Programma</dt><dd>Cena alle 20.00, poi film e condivisione</dd></div>
+            <div><dt>Data</dt><dd>{EVENTO.data}</dd></div>
+            <div><dt>Ore 20.00</dt><dd>Cena, film e condivisione</dd></div>
             <div><dt>Dove</dt><dd>{EVENTO.luogo}</dd></div>
-            <div><dt>Per chi</dt><dd>{EVENTO.destinatari}</dd></div>
+            <div><dt>Per chi</dt><dd>Annate 2013-2012-2011-2010</dd></div>
           </dl>
         </div>
 
