@@ -10,7 +10,7 @@ export default async function ModificaIscrizione({ params }: { params: Promise<{
   const { id } = await params;
   const { data } = await admin.supabase
     .from("iscrizioni_adolescenti")
-    .select("id, nome, cognome, annata, cena")
+    .select("id, nome, cognome, annata, cena, animatore, allergie")
     .eq("id", Number(id))
     .maybeSingle();
   if (!data) notFound();

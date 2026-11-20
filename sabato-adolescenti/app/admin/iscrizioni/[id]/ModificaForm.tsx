@@ -5,7 +5,7 @@ import { useActionState } from "react";
 import { modificaIscrizione, type StatoModifica } from "../../actions";
 import { ANNATE } from "@/lib/evento";
 
-type Iscrizione = { id: number; nome: string; cognome: string; annata: number; cena: boolean };
+type Iscrizione = { id: number; nome: string; cognome: string; annata: number; cena: boolean; animatore: boolean; allergie: string | null };
 
 export default function ModificaForm({ iscrizione: i }: { iscrizione: Iscrizione }) {
   const [stato, azione, inCorso] = useActionState(modificaIscrizione.bind(null, i.id), { ok: false } as StatoModifica);
@@ -37,6 +37,14 @@ export default function ModificaForm({ iscrizione: i }: { iscrizione: Iscrizione
           <option value="no">No</option>
         </select>
         {err.cena && <span className="errore">{err.cena}</span>}
+      </div>
+      <div className="campo">
+        <label htmlFor="allergie">Intolleranze o allergie alimentari</label>
+        <textarea id="allergie" name="allergie" defaultValue={i.allergie ?? ""} rows={2} maxLength={500} />
+      </div>
+      <div className="campo campo-check">
+        <input id="animatore" name="animatore" type="checkbox" defaultChecked={i.animatore} />
+        <label htmlFor="animatore">Animatore</label>
       </div>
       <div className="azioni-testa">
         <button className="btn" disabled={inCorso}>{inCorso ? "Salvataggio…" : "Salva le modifiche"}</button>

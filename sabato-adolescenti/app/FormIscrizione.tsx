@@ -63,6 +63,17 @@ export default function FormIscrizione() {
         {err.cena && <span className="errore">{err.cena}</span>}
       </fieldset>
 
+      <div className="campo">
+        <label htmlFor="allergie">Hai intolleranze o allergie alimentari? Scrivile qui!</label>
+        <textarea id="allergie" name="allergie" defaultValue={v.allergie} rows={2} maxLength={500}
+          placeholder="Lascia vuoto se non ne hai" />
+      </div>
+
+      <div className="campo campo-check">
+        <input id="animatore" name="animatore" type="checkbox" defaultChecked={v.animatore === "on"} />
+        <label htmlFor="animatore">Sei un animatore?</label>
+      </div>
+
       <div className="trappola" aria-hidden="true">
         <label htmlFor="sito_web">Non compilare</label>
         <input id="sito_web" name="sito_web" tabIndex={-1} autoComplete="off" />

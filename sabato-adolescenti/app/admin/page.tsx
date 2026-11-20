@@ -14,6 +14,8 @@ type Iscrizione = {
   cognome: string;
   annata: number;
   cena: boolean;
+  animatore: boolean;
+  allergie: string | null;
 };
 
 const dataOra = new Intl.DateTimeFormat("it-IT", {
@@ -30,7 +32,7 @@ export default async function Admin() {
 
   const { data } = await admin.supabase
     .from("iscrizioni_adolescenti")
-    .select("id, created_at, nome, cognome, annata, cena")
+    .select("id, created_at, nome, cognome, annata, cena, animatore, allergie")
     .order("cognome", { ascending: true })
     .order("nome", { ascending: true });
   const iscrizioni = (data ?? []) as Iscrizione[];
@@ -59,6 +61,8 @@ export default async function Admin() {
         <div><span className="numero">{iscrizioni.length}</span><span>ragazzi iscritti</span></div>
         <div><span className="numero">{aCena}</span><span>a cena</span></div>
         <div><span className="numero">{iscrizioni.length - aCena}</span><span>non a cena</span></div>
+        <div><span className="numero">{iscrizioni.filter((i) => i.animatore).length}</span><span>animatori</span></div>
+        <div><span className="numero">{iscrizioni.filter((i) => i.allergie).length}</span><span>con allergie</span></div>
         <a className="btn" href="/admin/export">Scarica il file Excel ↓</a>
       </div>
 
@@ -66,12 +70,12 @@ export default async function Admin() {
         <table className="tabella">
           <thead>
             <tr>
-              <th>#</th><th>Cognome</th><th>Nome</th><th>Annata</th><th>A cena</th><th>Data</th><th>Azioni</th>
+              <th>#</th><th>Cognome</th><th>Nome</th><th>Annata</th><th>A cena</th><th>Animatore</th><th>Allergie</th><th>Data</th><th>Azioni</th>
             </tr>
           </thead>
           <tbody>
             {iscrizioni.length === 0 && (
-              <tr><td colSpan={7} className="vuoto">Nessuna iscrizione ancora.</td></tr>
+              <tr><td colSpan={9} className="vuoto">Nessuna iscrizione ancora.</td></tr>
             )}
             {iscrizioni.map((i, n) => (
               <tr key={i.id}>
@@ -80,6 +84,8 @@ export default async function Admin() {
                 <td>{i.nome}</td>
                 <td>{i.annata} <span className="nota">({classe(i.annata)})</span></td>
                 <td>{i.cena ? "Sì" : "No"}</td>
+                <td>{i.animatore ? "Sì" : "No"}</td>
+                <td>{i.allergie ?? ""}</td>
                 <td>{dataOra.format(new Date(i.created_at))}</td>
                 <td>
                   <div className="azioni-riga">
