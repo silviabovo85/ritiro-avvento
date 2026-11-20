@@ -5,7 +5,7 @@ import { useActionState } from "react";
 import { modificaIscrizione, type StatoModifica } from "../../actions";
 import { ANNATE } from "@/lib/evento";
 
-type Iscrizione = { id: number; nome: string; cognome: string; annata: number; cena: boolean; animatore: boolean; allergie: string | null };
+type Iscrizione = { id: number; nome: string; cognome: string; annata: number | null; cena: boolean; animatore: boolean; allergie: string | null };
 
 export default function ModificaForm({ iscrizione: i }: { iscrizione: Iscrizione }) {
   const [stato, azione, inCorso] = useActionState(modificaIscrizione.bind(null, i.id), { ok: false } as StatoModifica);
@@ -25,7 +25,8 @@ export default function ModificaForm({ iscrizione: i }: { iscrizione: Iscrizione
       </div>
       <div className="campo">
         <label htmlFor="annata">Annata</label>
-        <select id="annata" name="annata" defaultValue={String(i.annata)}>
+        <select id="annata" name="annata" defaultValue={i.annata == null ? "" : String(i.annata)}>
+          <option value="">Non indicata</option>
           {ANNATE.map((a) => <option key={a.anno} value={a.anno}>{a.anno} ({a.classe})</option>)}
         </select>
         {err.annata && <span className="errore">{err.annata}</span>}

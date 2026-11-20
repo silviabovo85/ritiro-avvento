@@ -12,7 +12,7 @@ type Iscrizione = {
   created_at: string;
   nome: string;
   cognome: string;
-  annata: number;
+  annata: number | null;
   cena: boolean;
   animatore: boolean;
   allergie: string | null;
@@ -82,7 +82,7 @@ export default async function Admin() {
                 <td>{n + 1}</td>
                 <td>{i.cognome}</td>
                 <td>{i.nome}</td>
-                <td>{i.annata} <span className="nota">({classe(i.annata)})</span></td>
+                <td>{i.annata == null ? "" : <>{i.annata} <span className="nota">({classe(i.annata)})</span></>}</td>
                 <td>{i.cena ? "Sì" : "No"}</td>
                 <td>{i.animatore ? "Sì" : "No"}</td>
                 <td>{i.allergie ?? ""}</td>

@@ -7,7 +7,7 @@ create table if not exists public.iscrizioni_adolescenti (
   created_at timestamptz not null default now(),
   nome text not null check (char_length(nome) between 2 and 120),
   cognome text not null check (char_length(cognome) between 1 and 80),
-  annata smallint not null check (annata between 2010 and 2013),
+  annata smallint check (annata between 2010 and 2013),
   cena boolean not null,
   animatore boolean not null default false,
   allergie text check (char_length(allergie) <= 500),

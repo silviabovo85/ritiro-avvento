@@ -46,9 +46,9 @@ export default function FormIscrizione() {
       </div>
 
       <div className="campo">
-        <label htmlFor="annata">Annata *</label>
-        <select id="annata" name="annata" defaultValue={v.annata ?? ""} required aria-invalid={!!err.annata}>
-          <option value="" disabled>Seleziona l&apos;anno di nascita</option>
+        <label htmlFor="annata">Annata</label>
+        <select id="annata" name="annata" defaultValue={v.annata ?? ""} aria-invalid={!!err.annata}>
+          <option value="">Seleziona l&apos;anno di nascita</option>
           {ANNATE.map((a) => <option key={a.anno} value={a.anno}>{a.anno} ({a.classe})</option>)}
         </select>
         {err.annata && <span className="errore">{err.annata}</span>}
