@@ -11,7 +11,7 @@ export async function GET(request: Request) {
 
   const { data, error } = await admin.supabase
     .from("iscrizioni_adolescenti")
-    .select("created_at, nome, cognome, annata, cena")
+    .select("created_at, nome, cognome, annata, cena, animatore, allergie")
     .order("cognome", { ascending: true })
     .order("nome", { ascending: true });
   if (error) return new NextResponse("Errore nel recupero delle iscrizioni", { status: 500 });
@@ -26,6 +26,8 @@ export async function GET(request: Request) {
     { header: "Annata", key: "annata", width: 10 },
     { header: "Classe", key: "classe", width: 16 },
     { header: "Viene a cena", key: "cena", width: 14 },
+    { header: "Animatore", key: "animatore", width: 12 },
+    { header: "Intolleranze / allergie", key: "allergie", width: 36 },
     { header: "Data iscrizione", key: "data", width: 20 },
   ];
   const righe = data ?? [];
@@ -33,7 +35,7 @@ export async function GET(request: Request) {
     // Data in ora italiana, come testo per evitare conversioni di fuso in Excel
     const data = new Date(r.created_at).toLocaleString("it-IT", { timeZone: "Europe/Rome" });
     const classe = ANNATE.find((a) => a.anno === r.annata)?.classe ?? "";
-    ws.addRow({ n: i + 1, cognome: r.cognome, nome: r.nome, annata: r.annata, classe, cena: r.cena ? "Sì" : "No", data });
+    ws.addRow({ n: i + 1, cognome: r.cognome, nome: r.nome, annata: r.annata, classe, cena: r.cena ? "Sì" : "No", animatore: r.animatore ? "Sì" : "No", allergie: r.allergie ?? "", data });
   });
   const aCena = righe.filter((r) => r.cena).length;
   ws.addRow({});
@@ -43,7 +45,7 @@ export async function GET(request: Request) {
   testa.font = { bold: true, color: { argb: "FFFFFFFF" } };
   testa.fill = { type: "pattern", pattern: "solid", fgColor: { argb: "FF193764" } };
   ws.views = [{ state: "frozen", ySplit: 1 }];
-  ws.autoFilter = { from: "A1", to: "G1" };
+  ws.autoFilter = { from: "A1", to: "I1" };
 
   const buffer = await wb.xlsx.writeBuffer();
   return new NextResponse(buffer as ArrayBuffer, {

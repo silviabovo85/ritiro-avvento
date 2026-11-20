@@ -9,6 +9,8 @@ create table if not exists public.iscrizioni_adolescenti (
   cognome text not null check (char_length(cognome) between 1 and 80),
   annata smallint not null check (annata between 2010 and 2013),
   cena boolean not null,
+  animatore boolean not null default false,
+  allergie text check (char_length(allergie) <= 500),
   consenso_privacy boolean not null check (consenso_privacy)
 );
 
@@ -33,4 +35,4 @@ create policy "admin cancellano iscrizioni" on public.iscrizioni_adolescenti
 
 grant insert on public.iscrizioni_adolescenti to anon, authenticated;
 grant select, delete on public.iscrizioni_adolescenti to authenticated;
-grant update (nome, cognome, annata, cena) on public.iscrizioni_adolescenti to authenticated;
+grant update (nome, cognome, annata, cena, animatore, allergie) on public.iscrizioni_adolescenti to authenticated;

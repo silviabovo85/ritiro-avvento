@@ -78,11 +78,11 @@ h2 { font-size: 2rem; }
 .riga { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .campo { display: grid; gap: 6px; }
 .campo label { font-weight: 600; font-size: .95rem; }
-.campo input, .campo select, .form-in-linea input {
+.campo input, .campo select, .campo textarea, .form-in-linea input {
   font: inherit; padding: 11px 12px; border: 1px solid var(--bordo); border-radius: var(--raggio);
   background: var(--bianco); color: var(--testo); width: 100%;
 }
-.campo input:focus, .campo select:focus, .form-in-linea input:focus { outline: 2px solid var(--blu); outline-offset: 1px; border-color: var(--blu); }
+.campo input:focus, .campo select:focus, .campo textarea:focus, .form-in-linea input:focus { outline: 2px solid var(--blu); outline-offset: 1px; border-color: var(--blu); }
 .campo [aria-invalid="true"] { border-color: var(--errore); }
 .campo-check { grid-template-columns: auto 1fr; align-items: start; gap: 10px; }
 .campo-check input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--blu); }
@@ -163,3 +163,4 @@ h2 { font-size: 2rem; }
 }
 .scelta-opzioni label:has(input:checked) { border-color: var(--blu); background: var(--blu-chiaro); }
 .scelta-opzioni input { accent-color: var(--blu); margin: 0; width: auto; flex: none; padding: 0; }
+.campo textarea { font-family: inherit; resize: vertical; }
