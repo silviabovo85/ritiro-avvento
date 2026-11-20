@@ -8,7 +8,7 @@ export function leggiIscrizione(formData: FormData) {
   const nome = String(formData.get("nome") ?? "").trim().slice(0, 80);
   const cognome = String(formData.get("cognome") ?? "").trim().slice(0, 80);
   const annataRaw = String(formData.get("annata") ?? "");
-  const annata = Number(annataRaw);
+  const annata = annataRaw === "" ? null : Number(annataRaw);
   const cenaRaw = String(formData.get("cena") ?? "");
   const animatore = formData.get("animatore") === "on";
   const allergie = String(formData.get("allergie") ?? "").trim().slice(0, 500);
@@ -16,7 +16,7 @@ export function leggiIscrizione(formData: FormData) {
   const errori: Errori = {};
   if (nome.length < 2) errori.nome = "Inserisci il nome.";
   if (!cognome) errori.cognome = "Inserisci il cognome.";
-  if (!ANNATE.some((a) => a.anno === annata)) errori.annata = "Scegli la tua annata.";
+  if (annata !== null && !ANNATE.some((a) => a.anno === annata)) errori.annata = "Annata non valida.";
   if (cenaRaw !== "si" && cenaRaw !== "no") errori.cena = "Dicci se vieni a cena.";
 
   return {

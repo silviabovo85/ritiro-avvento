@@ -35,7 +35,7 @@ export async function GET(request: Request) {
     // Data in ora italiana, come testo per evitare conversioni di fuso in Excel
     const data = new Date(r.created_at).toLocaleString("it-IT", { timeZone: "Europe/Rome" });
     const classe = ANNATE.find((a) => a.anno === r.annata)?.classe ?? "";
-    ws.addRow({ n: i + 1, cognome: r.cognome, nome: r.nome, annata: r.annata, classe, cena: r.cena ? "Sì" : "No", animatore: r.animatore ? "Sì" : "No", allergie: r.allergie ?? "", data });
+    ws.addRow({ n: i + 1, cognome: r.cognome, nome: r.nome, annata: r.annata ?? "", classe, cena: r.cena ? "Sì" : "No", animatore: r.animatore ? "Sì" : "No", allergie: r.allergie ?? "", data });
   });
   const aCena = righe.filter((r) => r.cena).length;
   ws.addRow({});
